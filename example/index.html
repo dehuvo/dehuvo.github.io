@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Multiplication Table</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <style media="screen">
+    body {
+      margin: 30px 10px;
+    }
+    div, h3, form, input, table, th, td {
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body class="container-fluid">
+  <h3 class="text-center">Multiplication Table</h3>
+  <form>
+    <label for="from">From: </label>
+    <input type="number" min="1" max="20" id="from"> &nbsp;~&nbsp;
+    <label for="to">To: </label>
+    <input type="number" min="1" max="20" id="to"> &nbsp;
+    <button type="button">Show</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr id="header">
+      </tr>
+    </thead>
+    <tbody id="body">
+    </tbody>
+  </table>
+
+  <script charset="utf-8">
+    document.getElementsByTagName('button')[0].onclick = function() {
+      var from = parseInt(document.getElementById('from').value);
+      var to = parseInt(document.getElementById('to').value);
+      var step = from < to? 1: -1;
+      to += step;
+      var html = '';
+      for (var i = from; i != to; i += step) {
+        html += '<th>' + i + '</th>';
+      }
+      document.getElementById('header').innerHTML = html;
+      html = '';
+      var upto = 9 < Math.max(from, to) ? 20 : 9;
+      for (var j = 1; j <= upto; j++) {
+        html += '<tr>';
+        for (i = from; i != to; i += step) {
+          html += '<td>' + i + 'x' + j + '=' + (i * j) + '</td>';
+        }
+        html += '</tr>';
+      }
+      document.getElementById('body').innerHTML = html;
+    };
+  </script>
+</body>
+
+</html>
