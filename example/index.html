@@ -37,24 +37,24 @@
   <script charset="utf-8">
     document.getElementsByTagName('button')[0].onclick = function() {
       var from = parseInt(document.getElementById('from').value);
-      var to = parseInt(document.getElementById('to').value);
-      var step = from < to? 1: -1;
+      var   to = parseInt(document.getElementById('to').value);
+      var upto = 9 < to ? 20 : 9;
+      var step = from < to ? 1: -1;
       to += step;
-      var html = '';
+      var html = [];
       for (var i = from; i != to; i += step) {
-        html += '<th>' + i + '</th>';
+        html.push('<th>' + i + '</th>');
       }
-      document.getElementById('header').innerHTML = html;
-      html = '';
-      var upto = 9 < Math.max(from, to) ? 20 : 9;
+      document.getElementById('header').innerHTML = html.join('');
+      html = [];
       for (var j = 1; j <= upto; j++) {
-        html += '<tr>';
+        html.push('<tr>');
         for (i = from; i != to; i += step) {
-          html += '<td>' + i + 'x' + j + '=' + (i * j) + '</td>';
+          html.push('<td>' + i + 'x' + j + '=' + (i * j) + '</td>');
         }
-        html += '</tr>';
+        html.push('</tr>');
       }
-      document.getElementById('body').innerHTML = html;
+      document.getElementById('body').innerHTML = html.join('');
     };
   </script>
 </body>
